@@ -354,7 +354,7 @@ class RAFT_OMDAO(om.ExplicitComponent):
         member_scalar_t = members_opt['scalar_thicknesses']
         member_scalar_d = members_opt['scalar_diameters']
         member_scalar_coeff = members_opt['scalar_coefficients']
-        intersectMesh = modeling_opt['intersection_mesh']
+        intersectMesh = int(modeling_opt['intersection_mesh'])
 
         
         nlines = mooring_opt['nlines']
