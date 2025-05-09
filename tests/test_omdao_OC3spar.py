@@ -14,7 +14,7 @@ class TestSpider(unittest.TestCase):
         opt['modeling'] = {}
 
         opt['modeling']['flag'] = True
-        opt['modeling']['potential_model_override'] = 1
+        opt['modeling']['potential_model_override'] = 0
         opt['modeling']['potential_bem_members'] = ['spar']
         opt['modeling']['min_freq_BEM'] = 0.0999999
         opt['modeling']['min_freq'] = 0.1
@@ -27,7 +27,7 @@ class TestSpider(unittest.TestCase):
         opt['modeling']['save_designs'] = False
         opt['modeling']['plot_designs'] = False
         opt['modeling']['runPyHAMS'] = True
-        opt['modeling']['BEM_dir'] = 'none/BEM'
+        opt['modeling']['BEM_dir'] = 'BEM'
         opt['modeling']['model_potential'] = [True,False, False,False]
         opt['modeling']['nfreq'] = 10
         opt['modeling']['n_cases'] = 2
