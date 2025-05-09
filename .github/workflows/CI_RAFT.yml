@@ -51,8 +51,11 @@ jobs:
                   cd examples
                   python example_from_yaml.py false
 
+            - name: output
+              run: pip freeze
+
             - name: Test run
               run: |
                   cd tests
-                  pytest .
+                  pytest -v .
 
