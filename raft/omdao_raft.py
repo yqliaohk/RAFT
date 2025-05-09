@@ -402,23 +402,23 @@ class RAFT_OMDAO(om.ExplicitComponent):
 
         # Environment layer data
         design['site'] = {}
-        design['site']['water_depth'] = float(inputs['mooring_water_depth'])
-        design['site']['rho_air'] = float(inputs['rho_air'])
-        design['site']['rho_water'] = float(inputs['rho_water'])
-        design['site']['mu_air' ] = float(inputs['mu_air'])
-        design['site']['shearExp'] = float(inputs['shear_exp'])
+        design['site']['water_depth'] = float(inputs['mooring_water_depth'][0])
+        design['site']['rho_air'] = float(inputs['rho_air'][0])
+        design['site']['rho_water'] = float(inputs['rho_water'][0])
+        design['site']['mu_air' ] = float(inputs['mu_air'][0])
+        design['site']['shearExp'] = float(inputs['shear_exp'][0])
         
         # RNA properties
         design['turbine'] = {}
-        design['turbine']['mRNA']          = float(inputs['turbine_mRNA'])
-        design['turbine']['IxRNA']         = float(inputs['turbine_IxRNA'])
-        design['turbine']['IrRNA']         = float(inputs['turbine_IrRNA'])
-        design['turbine']['xCG_RNA']       = float(inputs['turbine_xCG_RNA'])
-        design['turbine']['hHub']          = float(inputs['turbine_hHub'])
-        design['turbine']['overhang']      = float(inputs['turbine_overhang'])
-        design['turbine']['Fthrust']       = float(inputs['turbine_Fthrust'])
-        design['turbine']['yaw_stiffness'] = float(inputs['turbine_yaw_stiffness'])
-        design['turbine']['gear_ratio']    = float(inputs['gear_ratio'])
+        design['turbine']['mRNA']          = float(inputs['turbine_mRNA'][0])
+        design['turbine']['IxRNA']         = float(inputs['turbine_IxRNA'][0])
+        design['turbine']['IrRNA']         = float(inputs['turbine_IrRNA'][0])
+        design['turbine']['xCG_RNA']       = float(inputs['turbine_xCG_RNA'][0])
+        design['turbine']['hHub']          = float(inputs['turbine_hHub'][0])
+        design['turbine']['overhang']      = float(inputs['turbine_overhang'][0])
+        design['turbine']['Fthrust']       = float(inputs['turbine_Fthrust'][0])
+        design['turbine']['yaw_stiffness'] = float(inputs['turbine_yaw_stiffness'][0])
+        design['turbine']['gear_ratio']    = float(inputs['gear_ratio'][0])
 
         # Tower
         design['turbine']['tower'] = {}
@@ -434,32 +434,32 @@ class RAFT_OMDAO(om.ExplicitComponent):
         design['turbine']['tower']['gamma'] = inputs['turbine_tower_gamma'][0]
         design['turbine']['tower']['stations'] = inputs['turbine_tower_stations']
         if turbine_opt['scalar_diameters']:
-            design['turbine']['tower']['d'] = float(inputs['turbine_tower_d'])
+            design['turbine']['tower']['d'] = float(inputs['turbine_tower_d'][0])
         else:
             design['turbine']['tower']['d'] = inputs['turbine_tower_d']
         if turbine_opt['scalar_thicknesses']:
-            design['turbine']['tower']['t'] = float(inputs['turbine_tower_t'])
+            design['turbine']['tower']['t'] = float(inputs['turbine_tower_t'][0])
         else:
             design['turbine']['tower']['t'] = inputs['turbine_tower_t']
         if turbine_opt['scalar_coefficients']:
-            design['turbine']['tower']['Cd'] = float(inputs['turbine_tower_Cd'])
-            design['turbine']['tower']['Ca'] = float(inputs['turbine_tower_Ca'])
-            design['turbine']['tower']['CdEnd'] = float(inputs['turbine_tower_CdEnd'])
-            design['turbine']['tower']['CaEnd'] = float(inputs['turbine_tower_CaEnd'])
+            design['turbine']['tower']['Cd'] = float(inputs['turbine_tower_Cd'][0])
+            design['turbine']['tower']['Ca'] = float(inputs['turbine_tower_Ca'][0])
+            design['turbine']['tower']['CdEnd'] = float(inputs['turbine_tower_CdEnd'][0])
+            design['turbine']['tower']['CaEnd'] = float(inputs['turbine_tower_CaEnd'][0])
         else:
             design['turbine']['tower']['Cd'] = inputs['turbine_tower_Cd']
             design['turbine']['tower']['Ca'] = inputs['turbine_tower_Ca']
             design['turbine']['tower']['CdEnd'] = inputs['turbine_tower_CdEnd']
             design['turbine']['tower']['CaEnd'] = inputs['turbine_tower_CaEnd']
-        design['turbine']['tower']['rho_shell'] = float(inputs['turbine_tower_rho_shell'])
+        design['turbine']['tower']['rho_shell'] = float(inputs['turbine_tower_rho_shell'][0])
 
         # Blades and rotors
         design['turbine']['nBlades']    = int(discrete_inputs['nBlades'])
-        design['turbine']['shaft_tilt'] = float(inputs['tilt'])
-        design['turbine']['precone']    = float(inputs['precone'])
-        design['turbine']['Zhub']       = float(inputs['wind_reference_height'])
-        design['turbine']['Rhub']       = float(inputs['hub_radius'])
-        design['turbine']['I_drivetrain']    = float(inputs['rotor_inertia'])
+        design['turbine']['shaft_tilt'] = float(inputs['tilt'][0])
+        design['turbine']['precone']    = float(inputs['precone'][0])
+        design['turbine']['Zhub']       = float(inputs['wind_reference_height'][0])
+        design['turbine']['Rhub']       = float(inputs['hub_radius'][0])
+        design['turbine']['I_drivetrain']    = float(inputs['rotor_inertia'][0])
 
         design['turbine']['blade'] = {}
         design['turbine']['blade']['geometry']    = np.c_[inputs['blade_r'],
@@ -467,9 +467,9 @@ class RAFT_OMDAO(om.ExplicitComponent):
                                                           inputs['blade_theta'],
                                                           inputs['blade_precurve'],
                                                           inputs['blade_presweep']]
-        design['turbine']['blade']['Rtip']        = float(inputs['blade_Rtip'])
-        design['turbine']['blade']['precurveTip'] = float(inputs['blade_precurveTip'])
-        design['turbine']['blade']['presweepTip'] = float(inputs['blade_presweepTip'])
+        design['turbine']['blade']['Rtip']        = float(inputs['blade_Rtip'][0])
+        design['turbine']['blade']['precurveTip'] = float(inputs['blade_precurveTip'][0])
+        design['turbine']['blade']['presweepTip'] = float(inputs['blade_presweepTip'][0])
         airfoil_pos = [float(ap) for ap in inputs['airfoils_position']]     # Cast to float for yaml saving purposes
         design['turbine']['blade']['airfoils']    = list(zip(airfoil_pos, turbine_opt['af_used_names']))
         # airfoils data
@@ -488,10 +488,10 @@ class RAFT_OMDAO(om.ExplicitComponent):
         design['turbine']['pitch_control']['GS_Angles']    = inputs['rotor_PC_GS_angles']
         design['turbine']['pitch_control']['GS_Kp']        = inputs['rotor_PC_GS_Kp']
         design['turbine']['pitch_control']['GS_Ki']        = inputs['rotor_PC_GS_Ki']
-        design['turbine']['pitch_control']['Fl_Kp']        = float(inputs['Fl_Kp'])
+        design['turbine']['pitch_control']['Fl_Kp']        = float(inputs['Fl_Kp'][0])
         design['turbine']['torque_control'] = {}
-        design['turbine']['torque_control']['VS_KP'] = float(inputs['rotor_TC_VS_Kp'])
-        design['turbine']['torque_control']['VS_KI'] = float(inputs['rotor_TC_VS_Ki'])
+        design['turbine']['torque_control']['VS_KP'] = float(inputs['rotor_TC_VS_Kp'][0])
+        design['turbine']['torque_control']['VS_KI'] = float(inputs['rotor_TC_VS_Ki'][0])
 
         # Operations
         design['turbine']['wt_ops'] = {}
@@ -605,12 +605,12 @@ class RAFT_OMDAO(om.ExplicitComponent):
                     design['platform']['members'][i]['Ca'][:,1] = np.interp(s_grid, s_0, inputs[m_name+'Ca'][:,1])
 
             if member_scalar_coeff[i]:
-                design['platform']['members'][i]['CdEnd'] = float(inputs[m_name+'CdEnd'])
-                design['platform']['members'][i]['CaEnd'] = float(inputs[m_name+'CaEnd'])
+                design['platform']['members'][i]['CdEnd'] = float(inputs[m_name+'CdEnd'][0])
+                design['platform']['members'][i]['CaEnd'] = float(inputs[m_name+'CaEnd'][0])
             else:
                 design['platform']['members'][i]['CdEnd'] = np.interp(s_grid, s_0, inputs[m_name+'CdEnd'])
                 design['platform']['members'][i]['CaEnd'] = np.interp(s_grid, s_0, inputs[m_name+'CaEnd'])
-            design['platform']['members'][i]['rho_shell'] = float(inputs[m_name+'rho_shell'])
+            design['platform']['members'][i]['rho_shell'] = float(inputs[m_name+'rho_shell'][0])
             if mnreps > 0:
                 design['platform']['members'][i]['heading'] = inputs[m_name+'heading']
             if mnpts_lfill > 0:
@@ -658,7 +658,7 @@ class RAFT_OMDAO(om.ExplicitComponent):
                     design['platform']['members'][i]['cap_d_in'] = di_cap[isort]
 
         design['mooring'] = {}
-        design['mooring']['water_depth'] = float(inputs['mooring_water_depth'])
+        design['mooring']['water_depth'] = float(inputs['mooring_water_depth'][0])
         design['mooring']['points'] = [dict() for m in range(nconnections)] #Note: doesn't work [{}]*nconnections
         for i in range(0, nconnections):
             pt_name = f'mooring_point{i+1}_'
@@ -675,20 +675,20 @@ class RAFT_OMDAO(om.ExplicitComponent):
             design['mooring']['lines'][i]['endA'] = mooring_opt[ml_name+'endA']
             design['mooring']['lines'][i]['endB'] = mooring_opt[ml_name+'endB']
             design['mooring']['lines'][i]['type'] = mooring_opt[ml_name+'type']
-            design['mooring']['lines'][i]['length'] = float(inputs[ml_name+'length'])
+            design['mooring']['lines'][i]['length'] = float(inputs[ml_name+'length'][0])
         design['mooring']['line_types'] = [dict() for m in range(nline_types)] #Note: doesn't work [{}]*nline_types
         for i in range(0, nline_types):
             lt_name = f'mooring_line_type{i+1}_'
             design['mooring']['line_types'][i]['name'] = mooring_opt[lt_name+'name']
-            design['mooring']['line_types'][i]['diameter'] = float(inputs[lt_name+'diameter'])
-            design['mooring']['line_types'][i]['mass_density'] = float(inputs[lt_name+'mass_density'])
-            design['mooring']['line_types'][i]['stiffness'] = float(inputs[lt_name+'stiffness'])
-            design['mooring']['line_types'][i]['breaking_load'] = float(inputs[lt_name+'breaking_load'])
-            design['mooring']['line_types'][i]['cost'] = float(inputs[lt_name+'cost'])
-            design['mooring']['line_types'][i]['transverse_added_mass'] = float(inputs[lt_name+'transverse_added_mass'])
-            design['mooring']['line_types'][i]['tangential_added_mass'] = float(inputs[lt_name+'tangential_added_mass'])
-            design['mooring']['line_types'][i]['transverse_drag'] = float(inputs[lt_name+'transverse_drag'])
-            design['mooring']['line_types'][i]['tangential_drag'] = float(inputs[lt_name+'tangential_drag'])
+            design['mooring']['line_types'][i]['diameter'] = float(inputs[lt_name+'diameter'][0])
+            design['mooring']['line_types'][i]['mass_density'] = float(inputs[lt_name+'mass_density'][0])
+            design['mooring']['line_types'][i]['stiffness'] = float(inputs[lt_name+'stiffness'][0])
+            design['mooring']['line_types'][i]['breaking_load'] = float(inputs[lt_name+'breaking_load'][0])
+            design['mooring']['line_types'][i]['cost'] = float(inputs[lt_name+'cost'][0])
+            design['mooring']['line_types'][i]['transverse_added_mass'] = float(inputs[lt_name+'transverse_added_mass'][0])
+            design['mooring']['line_types'][i]['tangential_added_mass'] = float(inputs[lt_name+'tangential_added_mass'][0])
+            design['mooring']['line_types'][i]['transverse_drag'] = float(inputs[lt_name+'transverse_drag'][0])
+            design['mooring']['line_types'][i]['tangential_drag'] = float(inputs[lt_name+'tangential_drag'][0])
         design['mooring']['anchor_types'] = [dict() for m in range(1)] #Note: doesn't work [{}]*anchor_types
         design['mooring']['anchor_types'][0]['name'] = 'drag_embedment'
         design['mooring']['anchor_types'][0]['mass'] = 1e3
