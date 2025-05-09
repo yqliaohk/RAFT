@@ -14,7 +14,7 @@ class TestSpider(unittest.TestCase):
         opt['modeling'] = {}
 
         opt['modeling']['flag'] = True
-        opt['modeling']['potential_model_override'] = 0
+        opt['modeling']['potential_model_override'] = 1
         opt['modeling']['potential_bem_members'] = ['spar']
         opt['modeling']['min_freq_BEM'] = 0.0999999
         opt['modeling']['min_freq'] = 0.1
